@@ -7,19 +7,23 @@ CREATE TABLE departments (
 
 -- Q2
 ALTER TABLE people
-ADD department_id INT UNSIGNED;
+MODIFY department_id INT UNSIGNED AFTER email;
 
 -- Q3/Q4
-INSERT INTO departments (name) VALUES ('営業');
-INSERT INTO departments (name) VALUES ('開発');
-INSERT INTO departments (name) VALUES ('経理');
-INSERT INTO departments (name) VALUES ('人事');
-INSERT INTO departments (name) VALUES ('情報システム');
+INSERT INTO departments (name)
+VALUES
+    ('営業'),
+    ('開発'),
+    ('経理'),
+    ('人事'),
+    ('情報システム');
 
-INSERT INTO people (name, email, age, gender) VALUES ('今岡稜', 'ryoimaoka@gizumo.jp', 25, 1);
-INSERT INTO people (name, email, age, gender) VALUES ('高橋美咲 ', 'takahashimisaki@gizumo.jp', 28, 2);
-INSERT INTO people (name, email, age, gender) VALUES ('渡辺亮', 'watanaberyo@gizumo.jp', 35, 1);
-INSERT INTO people (name, email, age, gender) VALUES ('森田陽子', 'moritayouko@gizumo.jp', 40, 2);
+INSERT INTO people (name, email, departments_id, age, gender)
+VALUES
+    ('今岡稜', 'ryoimaoka@gizumo.jp', 1, 25, 1),
+    ('高橋美咲', 'takahashimisaki@gizumo.jp', 1, 28, 2),
+    ('渡辺亮', 'watanaberyo@gizumo.jp',2, 35, 1),
+    ('森田陽子', 'moritayouko@gizumo.jp',3, 40, 2);
 
 UPDATE people SET department_id = 1 WHERE person_id IN (1,2,3);
 UPDATE people SET department_id = 2 WHERE person_id IN (4,5,6,7);
@@ -52,8 +56,7 @@ WHERE
 ORDER BY
   `created_at`;
 
--- これは、peopleテーブルの中にあるdepartment_idが1に当てはまるレコードのname、email、ageのデータを表示します。created_atは、このデータがいつ作られたかを表します
-
+-- これは、peopleテーブルの中にあるdepartment_idが1に当てはまるレコードのname、email、ageのデータを表示します。ORDER BY 句は、created_at フィールドを基準に結果を並べ替え、レコードが作成された順番で表示されるようにします。
 -- Q7
 SELECT name
 FROM people
@@ -83,3 +86,7 @@ SELECT p.name
 FROM people p
 LEFT JOIN reports r ON p.person_id = r.person_id
 WHERE r.content IS NULL;
+
+
+-- URL
+https://github.com/rimaoka18/db_lesson_basic/pull/2
