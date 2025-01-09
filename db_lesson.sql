@@ -33,15 +33,17 @@ UPDATE people SET department_id = 5 WHERE person_id = 10;
 
 DELETE FROM reports WHERE report_id = 11;
 
-UPDATE reports SET content = '午後からコードの修正を行いました' WHERE report_id = 2;
-UPDATE reports SET content = 'クライアントに資料を送付しました' WHERE report_id = 3;
-UPDATE reports SET content = 'チームで次のプロジェクトを計画しました' WHERE report_id = 4;
-UPDATE reports SET content = 'メール対応に多くの時間を使いました' WHERE report_id = 5;
-UPDATE reports SET content = 'データベースのテストを実施しました' WHERE report_id = 6;
-UPDATE reports SET content = '今日の業務は順調でした' WHERE report_id = 7;
-UPDATE reports SET content = '会議で新しい案が決まりました' WHERE report_id = 8;
-UPDATE reports SET content = '仕様書のレビューを進めました' WHERE report_id = 9;
-UPDATE reports SET content = '新入社員に業務の説明をしました' WHERE report_id = 10;
+INSERT INTO reports (report_id, content)
+VALUES
+    (2, '午後からコードの修正を行いました'),
+    (3, 'クライアントに資料を送付しました'),
+    (4, 'チームで次のプロジェクトを計画しました'),
+    (5, 'メール対応に多くの時間を使いました'),
+    (6, 'データベースのテストを実施しました'),
+    (7, '今日の業務は順調でした'),
+    (8, '会議で新しい案が決まりました'),
+    (9, '仕様書のレビューを進めました'),
+    (10, '新入社員に業務の説明をしました');
 
 -- Q5
 SELECT name,age FROM people WHERE gender = 1 ORDER BY age DESC;
